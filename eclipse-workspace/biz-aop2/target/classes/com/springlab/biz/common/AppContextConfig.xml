@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<context:component-scan base-package="com.springlab.biz.board, com.springlab.biz.user"/>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!--  
+	<bean id="logBeforeAdvice"
+		class="com.springlab.biz.board.aop.ConsoleLogBeforeAdvice" />
+		-->
+		
+		
+		<!--  
+	<aop:config>
+		<aop:pointcut id="allPointcut" 
+		expression="execution(* com.springlab.biz.board..*Impl.*(..))" />
+		<aop:pointcut id="getPointcut" 
+		expression="execution(* com.springlab.biz.board..*Impl.get*(..))" />
+		
+		<aop:aspect ref="logBeforeAdvice">
+			<aop:before pointcut-ref="allPointcut" method="beforeLog" />
+		</aop:aspect>
+		
+		<aop:aspect ref="consoleLogAdvice">
+			<aop:pointcut id ="insertPointcut"
+				expression="execution(* com.springlab.biz.board..*Impl.insert*(..))" />
+		<aop:after-returning pointcut-ref="allPointcut" method="afterReturningLog" returning="returnObj" />
+		<aop:after-throwing pointcut-ref="insertPointcut" method="afterThrowingLog" throwing="ex" />
+		<aop:after pointcut-ref="allPointcut" method="afterLog" />
+		<aop:around pointcut-ref="insertPointcut" method="aroundLog" />
+		</aop:aspect>
+	</aop:config>
+
+	-->
+	
+	
+</beans>

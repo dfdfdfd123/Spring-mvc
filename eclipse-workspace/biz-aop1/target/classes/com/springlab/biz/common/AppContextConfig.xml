@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="com.springlab.biz.board, com.springlab.biz.user"/>
+	
+	<bean id="beforeLogAdvice"
+		class="com.springlab.biz.board.aop.BeforeLogAdvice" />
+		
+		<bean id="afterReturningLogAdvice"
+		class="com.springlab.biz.board.aop.AfterReturningLogAdvice" />
+		
+		<bean id="afterThrowingLogAdvice"
+		class="com.springlab.biz.board.aop.AfterThrowingLogAdvice" />
+		
+		<bean id="aroundLogAdvice"
+		class="com.springlab.biz.board.aop.AroundLogAdvice" />
+		
+		
+		<bean id="getPointcut"
+			class="org.springframework.aop.support.NameMatchMethodPointcut">
+			<property name="mappedName" value="getBoard" />
+			</bean>
+			
+			<bean id="beforeAdvisor"
+				class="org.springframework.aop.support.DefaultPointcutAdvisor">
+				<property name="pointcut" ref="getPointcut" />
+				<property name="advice" ref="beforeLogAdvice"/>
+				</bean>
+			
+		<bean id ="boardServiceProxy"
+			class="org.springframework.aop.framework.ProxyFactoryBean">
+			<property name="target" ref="boardService"/>
+			<property name="interceptorNames">
+				<list>
+					<value>beforeAdvisor</value>
+					<value>beforeLogAdvice</value>
+					<value>afterReturningLogAdvice</value>
+					<value>afterThrowingLogAdvice</value>
+					<value>aroundLogAdvice</value>
+				</list>
+		</property>
+	</bean>
+</beans>

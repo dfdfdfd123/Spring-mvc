@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;boardweb2&apos; to &apos;board-webapp-spring-mvc&apos;" description="Rename resource &apos;boardweb2&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/boardweb2" name="board-webapp-spring-mvc" stamp="1684461538004" updateReferences="true"/>
+</session>

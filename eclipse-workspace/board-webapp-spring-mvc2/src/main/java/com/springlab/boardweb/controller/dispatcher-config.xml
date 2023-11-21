@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<context:component-scan base-package="com.springlab.biz.board, com.springlab.biz.user, com.springlab.biz.aop"/>
+	<context:property-placeholder location="classpath:config/database.properties" />
+<!--
+ 	<aop:aspectj-autoproxy />
+ -->	
+ 
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
+	  destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.driver}"/>
+	    <property name="url" value="${jdbc.url}"/>
+	    <property name="username" value="${jdbc.username}"/>
+	    <property name="password" value="${jdbc.password}"/>
+	</bean> 
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>	
+
+<!-- 	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="*" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="txPointcut" expression="execution(* com.springlab.biz..BoardServiceImpl.*(..))"/>
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+	</aop:config>
+ -->
+<!--
+  	<tx:annotation-driven transaction-manager="txManager" />
+ --> 
+ 
+ 	<bean class="com.springlab.boardweb.controller.MyViewResolver">
+ 		<property name="prefix" value="/WEB-INF/view/" />
+ 		<property name="suffix" value=".jsp" />
+ 	</bean>
+ 	
+ 	<bean id="/login" class="com.springlab.boardweb.controller.LoginController" />
+ 	<bean id="/login_proc" class="com.springlab.boardweb.controller.LoginProcController" />
+ 	<bean id="/logout" class="com.springlab.boardweb.controller.LogoutController" />
+ 	<bean id="/get_board_list" class="com.springlab.boardweb.controller.GetBoardListController" />
+ 	<bean id="/get_board" class="com.springlab.boardweb.controller.GetBoardController" />
+ 	<bean id="/insert_board" class="com.springlab.boardweb.controller.InsertBoardController" />
+ 	<bean id="/insert_board_proc" class="com.springlab.boardweb.controller.InsertBoardProcController" />
+ 	<bean id="/update_board" class="com.springlab.boardweb.controller.UpdateBoardController" />
+ 	<bean id="/delete_board" class="com.springlab.boardweb.controller.DeleteBoardController" />
+ 		 
+</beans>

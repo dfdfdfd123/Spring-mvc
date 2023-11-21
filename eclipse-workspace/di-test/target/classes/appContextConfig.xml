@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http//www.springframework.org/schema/p"
+    xmlns:c="http//www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        
+        <context:component-scan base-package="com.springlab.di_test" />
+        
+        <!--  
+
+    <bean id="samsung" class="com.springlab.di_test.SamsungTV2" lazy-init="true">
+    	<property name="speaker" ref="boss" />
+    	<property name="modelName" value="Samsung NEo QLED_75" />
+    	<property name="price" value="3000000" />
+    </bean>
+    -->
+ <!--  
+ 
+    <bean id="lg" class="com.springlab.di_test.LGTV2">
+    		<property name="speaker" ref="sony" /> speaker라는 값에 sony 저장 (종속성 ) 
+    		<property name="modelName" value="LG DLED-80" />
+    		<property name="price" value="3500000" />
+    </bean>
+    
+   -->
+   
+   <!-- 
+     <bean id="lg" class="com.springlab.di_test.LGTV2"
+    		p:speaker-ref="sony" 
+    		p:modelName="LG DLED-80"
+    		p:price="3500000" />
+    		
+    		-->
+ 
+    
+ <!--     <bean id="user" class="com.springlab.di_test.TVUser">
+      	<constructor-arg index="0" ref="samsung" />
+    
+    	<property name="tv"	ref="lg" /> -->  <!-- set 메소드 호출 -->
+   <!--   </bean> -->
+    
+ <!--     <bean id="boss" class="com.springlab.di_test.BossSpeaker" />
+    <bean id="sony" class="com.springlab.di_test.SonySpeaker" />
+    
+    -->
+    
+</beans>

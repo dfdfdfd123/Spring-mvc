@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=di-test/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.springlab.di_test{TV.java[TV" modifiers="513" timestamp="1679023302905"/>
+    <typeInfo handle="=di-test/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.springlab.di_test{Speaker.java[Speaker" modifiers="513" timestamp="1679017507549"/>
+    <typeInfo handle="=jdbc-test/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.springlab.jdbctest.board{BoardDAO.java[BoardDAO" modifiers="513" timestamp="1682648539771"/>
+    <typeInfo handle="=jdbc-test/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.springlab.jdbctest.board{BoardService.java[BoardService" modifiers="513" timestamp="1680165867952"/>
+    <typeInfo handle="=board-webapp-model2/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.example.biz.mvc.controller{Controller.java[Controller" modifiers="513" timestamp="1683861071873"/>
+    <typeInfo handle="=board-webapp-spring-mvc/C:\/Users\/winwi\/.m2\/repository\/org\/springframework\/spring-webmvc\/5.3.27\/spring-webmvc-5.3.27.jar=/maven.pomderived=/true=/=/org.eclipse.jst.component.dependency=/\/WEB-INF\/lib=/=/maven.pomderived=/true=/=/org.eclipse.jst.component.archivename=/spring-webmvc-5.3.27.jar=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-webmvc=/=/maven.version=/5.3.27=/=/maven.scope=/compile=/&lt;org.springframework.web.servlet.mvc(Controller.class[Controller" modifiers="1537" timestamp="1684461864678"/>
+</typeInfoHistroy>

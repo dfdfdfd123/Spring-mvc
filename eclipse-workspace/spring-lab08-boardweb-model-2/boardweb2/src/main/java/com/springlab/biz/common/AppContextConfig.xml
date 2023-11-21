@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<context:component-scan base-package="com.springlab.biz.board, com.springlab.biz.user, com.springlab.biz.aop"/>
+	<context:property-placeholder location="classpath:config/database.properties" />
+<!--
+ 	<aop:aspectj-autoproxy />
+ -->	
+<!-- 	
+	<bean id="beforeAdvice" class="com.springlab.biz.aop.BeforeLogAdvice" />
+	<bean id="afterAdvice" class="com.springlab.biz.aop.AfterLogAdvice" />
+	<bean id="aroundAdvice" class="com.springlab.biz.aop.AroundLogAdvice" />
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.springlab.biz..BoardServiceImpl.*(..))" id="allPointcut"/>
+		<aop:pointcut expression="execution(* com.springlab.biz..BoardServiceImpl.get*(..))" id="getPointcut"/>
+		<aop:aspect ref="beforeAdvice">
+			<aop:before method="beforeLog" pointcut-ref="allPointcut" />
+		</aop:aspect>
+		<aop:aspect ref="afterAdvice">
+			<aop:after-returning method="afterReturningLog" returning="returnObj" pointcut-ref="getPointcut" />
+			<aop:after-throwing method="afterThrowingLog" throwing="exObj" pointcut-ref="allPointcut" />
+			<aop:after method="afterLog" pointcut-ref="getPointcut" />
+		</aop:aspect>
+		<aop:aspect ref="aroundAdvice">
+			<aop:around method="aroundLog" pointcut-ref="getPointcut" />
+		</aop:aspect>
+	</aop:config>
+ -->
+ 
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
+	  destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.driver}"/>
+	    <property name="url" value="${jdbc.url}"/>
+	    <property name="username" value="${jdbc.username}"/>
+	    <property name="password" value="${jdbc.password}"/>
+	</bean> 
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>	
+
+<!-- 	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="*" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="txPointcut" expression="execution(* com.springlab.biz..BoardServiceImpl.*(..))"/>
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+	</aop:config>
+ -->
+ 	<tx:annotation-driven transaction-manager="txManager" />	 
+</beans>
